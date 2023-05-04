@@ -1,0 +1,4 @@
+{
+  "python.analysis.typeCheckingMode": "basic",
+  "python.linting.flake8Args": ["--ignore=E501", "--ignore=E266"]
+}
