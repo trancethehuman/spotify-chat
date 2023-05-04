@@ -10,4 +10,4 @@ Install Python requirements in the project repository: `pip install -r requireme
 
 If new dependencies are added, add them manually to `requirements.txt`
 
-- Start server: `uvicorn main:app --reload`
+To start: `py main.py` (Windows 11) or `python main.py` (Mac)
