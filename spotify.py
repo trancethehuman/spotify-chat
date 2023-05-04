@@ -18,9 +18,9 @@ sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
 
 
 # Spotify functions
-def add_song_to_queue(track_uri: str):
+def add_song_to_queue(song_uri: str):
     try:
-        sp.add_to_queue(track_uri)
+        sp.add_to_queue(song_uri)
         return "Added track to queue successfully"
     except:
         return "Error adding track to queue"
@@ -37,8 +37,8 @@ def find_song_by_lyrics(lyrics: str):
     results = sp.search(q=f"lyrics:{lyrics}", type='track')
     if (results):
         if len(results['tracks']['items']) > 0:
-            track_uri = results['tracks']['items'][0]['uri']
-            return (f"The URI of the matching track is {track_uri}")
+            song_uri = results['tracks']['items'][0]['uri']
+            return song_uri
         else:
             return ("No matching tracks found")
 
@@ -55,7 +55,42 @@ def add_song_to_queue_by_song_name(song_name: str):
 def add_song_to_queue_by_lyrics(lyrics: str):
     song_uri = find_song_by_lyrics(lyrics)
     if (song_uri):
-        print(song_uri, lyrics)
+        print(lyrics)
         return add_song_to_queue(song_uri)
     else:
         return "No matching tracks found"
+
+
+def start_playing_song_by_name(song_name: str):
+    song_uri = find_song_by_name(song_name)
+    if (song_uri):
+        sp.start_playback(uris=[song_uri])
+        return f"Started playing song {song_name}"
+    else:
+        return "No matching tracks found"
+
+
+def start_playing_song_by_lyrics(lyrics: str):
+    song_uri = find_song_by_lyrics(lyrics)
+    if (song_uri):
+        print(lyrics)
+        sp.start_playback(uris=[song_uri])
+        return f"Started playing song with lyrics: {lyrics}"
+    else:
+        return "No matching tracks found"
+
+
+def start_music():
+    try:
+        sp.start_playback()
+        return "Playback started!"
+    except:
+        return "Error starting playback"
+
+
+def pause_music():
+    try:
+        sp.pause_playback()
+        return "Playback paused!"
+    except:
+        return "Error pausing playback"
