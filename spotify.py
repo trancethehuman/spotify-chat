@@ -46,8 +46,8 @@ def find_song_by_lyrics(lyrics: str):
 def add_song_to_queue_by_song_name(song_name: str):
     song_uri = find_song_by_name(song_name)
     if (song_uri):
-        print(song_uri, song_name)
-        return add_song_to_queue(song_uri)
+        add_song_to_queue(song_uri)
+        return "Successfully added song to queue"
     else:
         return "No matching tracks found"
 
@@ -55,7 +55,6 @@ def add_song_to_queue_by_song_name(song_name: str):
 def add_song_to_queue_by_lyrics(lyrics: str):
     song_uri = find_song_by_lyrics(lyrics)
     if (song_uri):
-        print(lyrics)
         return add_song_to_queue(song_uri)
     else:
         return "No matching tracks found"
@@ -70,10 +69,10 @@ def start_playing_song_by_name(song_name: str):
         return "No matching tracks found"
 
 
+# Doesn't work well because Spotify's endpoint, not because of spotipy or agent
 def start_playing_song_by_lyrics(lyrics: str):
     song_uri = find_song_by_lyrics(lyrics)
     if (song_uri):
-        print(lyrics)
         sp.start_playback(uris=[song_uri])
         return f"Started playing song with lyrics: {lyrics}"
     else:
