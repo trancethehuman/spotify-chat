@@ -3,31 +3,22 @@ from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
 
-load_dotenv()  # Required to load .env
 
+load_dotenv()
+
+
+# Spotify configs
 client_id = os.getenv("SPOTIFY_CLIENT_ID")
 client_secret = os.getenv("SPOTIFY_CLIENT_SECRET")
 redirect_uri = os.getenv("SPOTIFY_REDIRECT_URI")
 
-# Spotify configs
 scope = ['playlist-modify-public', 'user-modify-playback-state']
 sp = spotipy.Spotify(auth_manager=SpotifyOAuth(client_id=client_id,
                      client_secret=client_secret, redirect_uri=redirect_uri, scope=scope))
 
 
-def get_tracks_by_genre(genre: str):
-    response = sp.search(q=f"""genre:'{genre}'""", type='track')
-    tracks_list = []
-
-    if (response):
-        for track in response['tracks']['items']:
-            tracks_list.append(
-                f"{track['name']} by {track['artists'][0]['name']} from the album {track['album']['name']}. Spotify URI: {track['uri']}")
-
-    return tracks_list
-
-
-def add_track_to_queue(track_uri: str):
+# Spotify functions
+def add_song_to_queue(track_uri: str):
     try:
         sp.add_to_queue(track_uri)
         return "Added track to queue successfully"
@@ -40,3 +31,31 @@ def find_song_by_name(name: str):
     if (results):
         song_uri = results['tracks']['items'][0]['uri']
         return song_uri
+
+
+def find_song_by_lyrics(lyrics: str):
+    results = sp.search(q=f"lyrics:{lyrics}", type='track')
+    if (results):
+        if len(results['tracks']['items']) > 0:
+            track_uri = results['tracks']['items'][0]['uri']
+            return (f"The URI of the matching track is {track_uri}")
+        else:
+            return ("No matching tracks found")
+
+
+def add_song_to_queue_by_song_name(song_name: str):
+    song_uri = find_song_by_name(song_name)
+    if (song_uri):
+        print(song_uri, song_name)
+        return add_song_to_queue(song_uri)
+    else:
+        return "No matching tracks found"
+
+
+def add_song_to_queue_by_lyrics(lyrics: str):
+    song_uri = find_song_by_lyrics(lyrics)
+    if (song_uri):
+        print(song_uri, lyrics)
+        return add_song_to_queue(song_uri)
+    else:
+        return "No matching tracks found"
