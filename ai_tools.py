@@ -16,10 +16,6 @@ llm = ChatOpenAI(max_retries=3, temperature=0,  # type: ignore
                  model_name=llm_model_type)
 
 
-def tool_pause_playback():
-    return Tool(name="Pause music", func=lambda n: pause_music(), description=f"""Pause music. No Action Input required.""", return_direct=True)  # type: ignore
-
-
 def tool_start_playing_song_by_name():
     return Tool(name="Start playing a song by it's name", func=lambda song_name: start_playing_song_by_name(song_name), description=f"""start playing a song by it's name. Action Input is a string of song_name.""", return_direct=True)  # type: ignore
 
