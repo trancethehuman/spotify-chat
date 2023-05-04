@@ -3,7 +3,7 @@ from dotenv import load_dotenv
 from langchain.agents import Tool
 from langchain.chat_models import ChatOpenAI
 from consts import llm_model_type
-from spotify import start_playing_song_by_name, start_playing_song_by_lyrics, pause_music
+from spotify import start_playing_song_by_name, start_playing_song_by_lyrics
 
 
 # Load .env variables
@@ -17,8 +17,8 @@ llm = ChatOpenAI(max_retries=3, temperature=0,  # type: ignore
 
 
 def tool_start_playing_song_by_name():
-    return Tool(name="Start playing a song by it's name", func=lambda song_name: start_playing_song_by_name(song_name), description=f"""start playing a song by it's name. Action Input is a string of song_name.""", return_direct=True)  # type: ignore
+    return Tool(name="Play a song given the name", func=lambda song_name: start_playing_song_by_name(song_name), description=f"""Given a song name, start playing a song. Action Input is a string of song_name.""", return_direct=True)  # type: ignore
 
 
 def tool_start_playing_song_by_lyrics():
-    return Tool(name="Start playing a song by it's lyrics", func=lambda lyrics: start_playing_song_by_lyrics(lyrics), description=f"""start playing a song by it's lyrics. Action Input is a string of lyrics.""", return_direct=True)  # type: ignore
+    return Tool(name="Play a song given lyrics", func=lambda lyrics: start_playing_song_by_lyrics(lyrics), description=f"""Given lyrics, start playing a song. Action Input is a string of lyrics.""", return_direct=True)  # type: ignore
