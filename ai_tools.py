@@ -1,5 +1,4 @@
 from langchain.agents import Tool
-from consts import llm_model_type
 from spotify import start_playing_song_by_name, start_playing_song_by_lyrics
 
 
