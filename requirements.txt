@@ -44,6 +44,4 @@ uvicorn
 openai
 faiss-cpu
 unstructured
-slack-bolt
 spotipy
-fastapi
