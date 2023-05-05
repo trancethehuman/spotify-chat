@@ -1,19 +1,6 @@
-import os
-from dotenv import load_dotenv
 from langchain.agents import Tool
-from langchain.chat_models import ChatOpenAI
 from consts import llm_model_type
 from spotify import start_playing_song_by_name, start_playing_song_by_lyrics
-
-
-# Load .env variables
-load_dotenv()
-
-
-# LLM Initialization
-openai_api_key = os.getenv("OPENAI_API_KEY")
-llm = ChatOpenAI(max_retries=3, temperature=0,  # type: ignore
-                 model_name=llm_model_type)
 
 
 def tool_start_playing_song_by_name():
