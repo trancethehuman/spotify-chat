@@ -1,20 +1,35 @@
-<img src="readme_resources/spotify.jpeg" alt="spotify" width="550">
+<img src="readme_resources/intro_splash.png" alt="spotify" width="550">
 
 # Spotify GPT Agent
+
+## Overview
+
+This is an intro to AI (LLM) Agents using LangChain. The goal is to use natural language commands towards Spotify player to be able to play certain songs. Example queries: "Play Despacito", "I know a song that goes like I was running through the six with my woes. Play me that song", etc..
+
+Please follow the instructions below to setup the project. Play with it, and build on top of it!
+
+## Tech Overview
+
+<img src="readme_resources/architecture.png" alt="spotify" width="400">
+
+- Python
+- LangChain (ReAct Agent)
+- Spotipy
+- Spotify
 
 ## Setup
 
 Sign up for Spotify and Spotify API ([developer.spotify.com](developer.spotify.com))
 
-Sign up for OpenAI API Key
+Sign up for OpenAI API Key ([platform.openai.com](https://platform.openai.com/overview))
 
 Create a `.env` file and put these values in
 
 ```
-OPENAI_API_KEY=
-SPOTIFY_CLIENT_ID=
-SPOTIFY_CLIENT_SECRET=
-SPOTIFY_REDIRECT_URI=
+OPENAI_API_KEY=**********************
+SPOTIFY_CLIENT_ID=*******************
+SPOTIFY_CLIENT_SECRET=***************
+SPOTIFY_REDIRECT_URI=****************
 ```
 
 Create a new Python virtual environment
