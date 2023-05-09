@@ -4,6 +4,9 @@
 
 ## Overview
 
+### Demo
+<video src="https://user-images.githubusercontent.com/16231195/237049535-23c07c57-709b-4fbf-81cc-42974c12ba24.mp4" style="width: 250;"></video>
+
 This is an intro to AI (LLM) Agents using LangChain. The goal is to use natural language commands towards Spotify player to be able to play certain songs. Example queries: "Play Despacito", "I know a song that goes like I was running through the six with my woes. Play me that song", etc..
 
 Please follow the instructions below to setup the project. Play with it, and build on top of it!
@@ -39,18 +42,21 @@ Please follow the instructions below to setup the project. Play with it, and bui
 
    - `py -m venv spotify-chat` (Windows 11)
 
-5. Start virtual environment manually by running:
+5. Install Python requirements in the project repository: `pip install -r requirements.txt`
+
+## Usage
+
+1. Open a Spotify Player (Web or Local)
+
+2. Start virtual environment manually by running:
 
    - `source spotify-chat/bin/activate` (Mac)
 
    - `.\spotify-chat\Scripts\activate` (Windows 11)
 
-   Or start it automatically by opening a new Terminal or Powershell and entering the project's directory.
+3. Start script: In your Powershell (Windows) or Terminal (Mac), run either `py main.py` (Windows 11) or `python main.py` (Mac)
 
-6. Install Python requirements in the project repository: `pip install -r requirements.txt`
 
-7. If new dependencies are added, add them manually to `requirements.txt`
+## Development
 
-## Usage
-
-To start: `py main.py` (Windows 11) or `python main.py` (Mac)
+1. If new dependencies are added, add them manually to `requirements.txt`
