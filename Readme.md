@@ -5,7 +5,7 @@
 ## Overview
 
 ### Demo
-<video src="https://user-images.githubusercontent.com/16231195/237049535-23c07c57-709b-4fbf-81cc-42974c12ba24.mp4" style="width: 250;"></video>
+<video src="https://user-images.githubusercontent.com/16231195/237049535-23c07c57-709b-4fbf-81cc-42974c12ba24.mp4" style="width: 300;"></video>
 
 This is an intro to AI (LLM) Agents using LangChain. The goal is to use natural language commands towards Spotify player to be able to play certain songs. Example queries: "Play Despacito", "I know a song that goes like I was running through the six with my woes. Play me that song", etc..
 
