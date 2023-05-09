@@ -13,40 +13,43 @@ Please follow the instructions below to setup the project. Play with it, and bui
 <img src="readme_resources/architecture.png" alt="spotify" width="400">
 
 - Python
-- LangChain (ReAct Agent)
-- Spotipy
+- [LangChain (ReAct Agent)](https://python.langchain.com/en/latest/modules/agents.html)
+- [Spotipy](https://spotipy.readthedocs.io/en/2.22.1/)
 - Spotify
+- OpenAI API
 
 ## Setup
 
-Sign up for Spotify and Spotify API ([developer.spotify.com](developer.spotify.com))
+1. Sign up for Spotify and Spotify API ([developer.spotify.com](developer.spotify.com))
 
-Sign up for OpenAI API Key ([platform.openai.com](https://platform.openai.com/overview))
+2. Sign up for OpenAI API Key ([platform.openai.com](https://platform.openai.com/overview))
 
-Create a `.env` file and put these values in
+3. Create a `.env` file and put these values in
 
-```
-OPENAI_API_KEY=**********************
-SPOTIFY_CLIENT_ID=*******************
-SPOTIFY_CLIENT_SECRET=***************
-SPOTIFY_REDIRECT_URI=****************
-```
+   ```
+   OPENAI_API_KEY=**********************
+   SPOTIFY_CLIENT_ID=*******************
+   SPOTIFY_CLIENT_SECRET=***************
+   SPOTIFY_REDIRECT_URI=****************
+   ```
 
-Create a new Python virtual environment
+4. Create a new Python virtual environment
 
-- `python -m venv spotify-chat` (Mac)
-- `py -m venv spotify-chat` (Windows 11)
+   - `python -m venv spotify-chat` (Mac)
 
-Start virtual environment manually by running:
+   - `py -m venv spotify-chat` (Windows 11)
 
-- `source spotify-chat/bin/activate` (Mac)
+5. Start virtual environment manually by running:
 
-- `.\spotify-chat\Scripts\activate` (Windows 11)
+   - `source spotify-chat/bin/activate` (Mac)
 
-Or start it automatically by opening a new Terminal or Powershell and entering the project's directory.
-Install Python requirements in the project repository: `pip install -r requirements.txt`
+   - `.\spotify-chat\Scripts\activate` (Windows 11)
 
-If new dependencies are added, add them manually to `requirements.txt`
+   Or start it automatically by opening a new Terminal or Powershell and entering the project's directory.
+
+6. Install Python requirements in the project repository: `pip install -r requirements.txt`
+
+7. If new dependencies are added, add them manually to `requirements.txt`
 
 ## Usage
 
