@@ -49,14 +49,15 @@ Please follow the instructions below to setup the project. Play with it, and bui
 
 1. Open a Spotify Player (Web or Local)
 
-2. Start virtual environment manually by running:
+2. Hit play to activate the player (otherwise Spotify Web API won't recognize it). Then pause.
+
+3. Start virtual environment manually by running:
 
    - `source spotify-chat/bin/activate` (Mac)
 
    - `.\spotify-chat\Scripts\activate` (Windows 11)
 
-3. Start script: In your Powershell (Windows) or Terminal (Mac), run either `py main.py` (Windows 11) or `python main.py` (Mac)
-
+4. Start script: In your Powershell (Windows) or Terminal (Mac), run either `py main.py` (Windows 11) or `python main.py` (Mac)
 
 ## Development
 
