@@ -121,5 +121,6 @@ def previous_track():
     try:
         sp.previous_track()
         return "Successfully went back to the previous track."
-    except spotipy.client.SpotifyException as e:
-        return ("Error occurred while going back to the previous track:", e)
+    except Exception as e:
+        error_message = traceback.format_exc()  # Get the formatted error message
+        return f"Error occurred while going back to the previous track: {error_message}"
