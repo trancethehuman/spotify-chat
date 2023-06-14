@@ -1,1 +1,1 @@
-llm_model_type = "gpt-3.5-turbo"
+llm_model_type = "gpt-3.5-turbo-0613"

@@ -1,13 +1,11 @@
-from ai_agents import initialize_agent_zero_shot
-from ai_tools import tool_start_playing_song_by_lyrics, tool_start_playing_song_by_name
+from ai_agents import initialize_agent_with_new_openai_functions
+from ai_tools import music_player_tools
 
 # Initialize agent
-tools = [
-    tool_start_playing_song_by_lyrics(),
-    tool_start_playing_song_by_name(),
-]
 
-agent = initialize_agent_zero_shot(tools=tools)
+agent = initialize_agent_with_new_openai_functions(
+    tools=music_player_tools)
+
 
 print("\nWhat's up! It's your boi DJ GPT. Can I take your requests?")
 

@@ -1,4 +1,5 @@
 import os
+import traceback
 from dotenv import load_dotenv
 import spotipy
 from spotipy.oauth2 import SpotifyOAuth
@@ -62,14 +63,15 @@ def add_song_to_queue_by_lyrics(lyrics: str):
 
 def start_playing_song_by_name(song_name: str):
     song_uri = find_song_by_name(song_name)
-    if (song_uri):
-        sp.start_playback(uris=[song_uri])
-        return f"Started playing song {song_name}"
-    else:
-        return "No matching tracks found"
+    try:
+        if (song_uri):
+            sp.start_playback(uris=[song_uri])
+            return f"Started playing song {song_name}"
+    except Exception as e:
+        error_message = traceback.format_exc()  # Get the formatted error message
+        return f"Couldn't play song. Error: {error_message}"
 
 
-# Doesn't work well because Spotify's endpoint, not because of spotipy or agent
 def start_playing_song_by_lyrics(lyrics: str):
     song_uri = find_song_by_lyrics(lyrics)
     if (song_uri):
@@ -79,12 +81,24 @@ def start_playing_song_by_lyrics(lyrics: str):
         return "No matching tracks found"
 
 
+def start_playlist_by_name(playlist_name: str):
+    """This defaults to playing the current user's playlist"""
+    results = sp.search(q=playlist_name, type="playlist", limit=1)
+
+    if results and results["playlists"]["items"]:
+        playlist_uri = results["playlists"]["items"][0]["uri"]
+        sp.start_playback(context_uri=playlist_uri)
+        return ("Playlist started:", playlist_name)
+    else:
+        return ("Playlist not found.")
+
+
 def start_music():
     try:
         sp.start_playback()
         return "Playback started!"
     except:
-        return "Error starting playback"
+        return "Error starting playback. Make sure to wake the player up before starting."
 
 
 def pause_music():
@@ -92,4 +106,20 @@ def pause_music():
         sp.pause_playback()
         return "Playback paused!"
     except:
-        return "Error pausing playback"
+        return "Error pausing playback. Make sure to wake the player up before stopping."
+
+
+def next_track():
+    try:
+        sp.next_track()
+        return "Successfully skipped to the next track."
+    except spotipy.client.SpotifyException as e:
+        return ("Error occurred while skipping track:", e)
+
+
+def previous_track():
+    try:
+        sp.previous_track()
+        return "Successfully went back to the previous track."
+    except spotipy.client.SpotifyException as e:
+        return ("Error occurred while going back to the previous track:", e)

@@ -1,10 +1,64 @@
-from langchain.agents import Tool
-from spotify import start_playing_song_by_name, start_playing_song_by_lyrics
+from pydantic import BaseModel, Field
+from spotify import start_playing_song_by_name, start_playing_song_by_lyrics, start_music, pause_music, start_playlist_by_name, next_track, previous_track
+from langchain.tools import tool
 
 
-def tool_start_playing_song_by_name():
-    return Tool(name="Play a song given the name", func=lambda song_name: start_playing_song_by_name(song_name), description=f"""Given a song name, start playing a song. Action Input is a string of song_name.""", return_direct=True)  # type: ignore
+class LyricsInput(BaseModel):
+    lyrics: str = Field(
+        description="Should be the lyrics in the user's request")
 
 
-def tool_start_playing_song_by_lyrics():
-    return Tool(name="Play a song given lyrics", func=lambda lyrics: start_playing_song_by_lyrics(lyrics), description=f"""Given lyrics, start playing a song. Action Input is a string of lyrics.""", return_direct=True)  # type: ignore
+class SongNameInput(BaseModel):
+    song: str = Field(
+        description="Should be song name in the user's request")
+
+
+class PlaylistNameInput(BaseModel):
+    playlist: str = Field(
+        description="the playlist name")
+
+
+@tool("song_by_lyrics", return_direct=False, args_schema=LyricsInput)
+def by_lyrics(lyrics: str) -> str:
+    """Extract the lyrics from user's request and play the song."""
+    return start_playing_song_by_lyrics(lyrics)
+
+
+@tool("play_song_by_name", return_direct=True, args_schema=SongNameInput)
+def by_name(song: str) -> str:
+    """Extract the song name from user's request and play the song."""
+    return start_playing_song_by_name(song)
+
+
+@tool("start_music", return_direct=False)
+def tool_start_music(query: str) -> str:
+    """Start music player."""
+    return start_music()
+
+
+@tool("pause_music", return_direct=False)
+def tool_pause_music(query: str) -> str:
+    """Pause music player."""
+    return pause_music()
+
+
+@tool("next_track", return_direct=False)
+def tool_next_track(query: str) -> str:
+    """Play next track."""
+    return next_track()
+
+
+@tool("previous_track", return_direct=False)
+def tool_previous_track(query: str) -> str:
+    """Play previous track."""
+    return previous_track()
+
+
+@tool("play_playlist_by_name", return_direct=False, args_schema=PlaylistNameInput)
+def tool_play_by_playlist(playlist: str) -> str:
+    """Extract the playlist name from user's request and play the playlist."""
+    return start_playlist_by_name(playlist)
+
+
+music_player_tools = [
+    by_lyrics, by_name, tool_start_music, tool_pause_music, tool_play_by_playlist, tool_next_track, tool_previous_track]

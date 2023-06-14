@@ -25,3 +25,10 @@ def initialize_agent_zero_shot(tools: List, is_agent_verbose: bool = True, max_i
         tools, llm, agent=AgentType.CONVERSATIONAL_REACT_DESCRIPTION, verbose=is_agent_verbose, max_iterations=max_iterations, return_intermediate_steps=return_thought_process, memory=memory)
 
     return agent
+
+
+def initialize_agent_with_new_openai_functions(tools: List, is_agent_verbose: bool = True, max_iterations: int = 3, return_thought_process: bool = False):
+    agent = initialize_agent(tools, llm, agent=AgentType.OPENAI_FUNCTIONS, verbose=is_agent_verbose,
+                             max_iterations=max_iterations, return_intermediate_steps=return_thought_process)
+
+    return agent
